@@ -137,6 +137,7 @@ static const CGFloat MASButtonFontSize = 11;
     [self activateResignObserver:_recording];
     [self setNeedsDisplay:YES];
 
+    #if defined(AVAILABLE_MAC_OS_X_VERSION_10_9_AND_LATER)
     // Give VoiceOver users feedback on the result. Requires at least 10.9 to run.
     // We’re silencing the “tautological compare” warning here so that if someone
     // takes the naked source files and compiles them with -Wall, the following
@@ -155,6 +156,7 @@ static const CGFloat MASButtonFontSize = 11;
         NSAccessibilityPostNotificationWithUserInfo(self, NSAccessibilityAnnouncementRequestedNotification, announcementInfo);
     }
     #pragma clang diagnostic pop
+    #endif
 }
 
 - (void)setShortcutValue:(MASShortcut *)shortcutValue
